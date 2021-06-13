@@ -6,6 +6,7 @@
         <div>
             <BaseInput v-model="fields.lopd.value" :rules="fields.lopd.rules" type="checkbox"></BaseInput>
         </div>
+        <vue-input-file v-model="fields.file.value" :rules="fields.file.rules"></vue-input-file>
       </BaseForm>
   </div>
 </template>
@@ -16,6 +17,8 @@ import BaseTextarea from '../components/form/BaseTextarea';
 import NotBlank from '../constraints/NotBlank';
 import IsTrue from '../constraints/IsTrue';
 import BaseForm from '../components/form/BaseForm';
+import NotNull from '../constraints/NotNull';
+import VueInputFile from '../components/form/VueInputFile.vue';
 
 export default {
     name: 'vue-form',
@@ -23,7 +26,8 @@ export default {
     components: {
         BaseInput,
         BaseTextarea,
-        BaseForm
+        BaseForm,
+        VueInputFile
     },
 
     data() {
@@ -31,7 +35,8 @@ export default {
             fields: {
                 name: { value: '', rules: [new NotBlank()], customMessage: "Server Error" },
                 aboutYou: { value: '', rules: [new NotBlank()], customMessage: '' },
-                lopd: { value: false, rules: [new IsTrue()] }
+                lopd: { value: false, rules: [new IsTrue()] },
+                file: { value: undefined, rules: [new NotNull()]}
             }
         }
     },
